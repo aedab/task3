@@ -157,22 +157,6 @@ kubectl get pods -n pod-monitor
 kubectl get svc -n pod-monitor
 ```
 
-## Deployment Requirements Compliance
-
-✅ **Clean, readable, self-documented code**: Python code with comprehensive comments and docstrings
-
-✅ **README.md with usage instructions**: This document provides complete setup and usage guide
-
-✅ **Deployment manifests**: Kubernetes YAML manifests and Helm chart provided
-
-✅ **Dedicated service account**: `pod-monitor-sa` with minimal required RBAC permissions
-
-✅ **NodePort service**: Service exposed on port 30080
-
-✅ **Minimum 2 pods**: Deployment configured with `replicas: 2`
-
-✅ **Rolling update with max 1 unavailable**: Strategy configured with `maxUnavailable: 1`
-
 ## Security Considerations
 
 - Uses non-root user in container
@@ -249,17 +233,3 @@ python -m pytest tests/
 # Security scan
 docker scan pod-monitor:latest
 ```
-
-## Production Considerations
-
-- Use a proper container registry
-- Implement proper monitoring and alerting
-- Consider using init containers for dependency checks
-- Add resource quotas and network policies
-- Implement proper backup and disaster recovery
-- Use GitOps for deployment management
-- Add comprehensive logging and metrics
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.

@@ -1,0 +1,48 @@
+# Default values for pod-monitor
+replicaCount: 2
+
+image:
+  repository: pod-monitor
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+serviceAccount:
+  create: true
+  name: pod-monitor-sa
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30080
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+# Slack configuration
+slack:
+  webhookUrl: "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+
+# Namespace to monitor
+monitoring:
+  namespace: "default"
+
+# Rolling update strategy
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
+
+# Health check configuration
+healthCheck:
+  readinessProbe:
+    initialDelaySeconds: 10
+    periodSeconds: 10
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 30
